@@ -37,7 +37,13 @@ public class ClienteRestController {
 	 public ResponseEntity<Cliente> buscarCliente(@RequestBody Integer id) {
 		
 			 Optional <Cliente> cliente=clienteRepository.findById(id);
-			 return ResponseEntity.ok(cliente.get());
+			 
+			 if(cliente.isPresent()) {
+				 return ResponseEntity.ok(cliente.get());
+			 }else {
+				 return ResponseEntity.notFound().build();
+			 }
+			
 		
 	    }
 	
@@ -64,7 +70,7 @@ public class ClienteRestController {
 	
 	@PostMapping("/eliminarCliente")
 	public ResponseEntity<String> eliminarCliente(@RequestBody Integer id){
-		
+		//Comentario Añadido
 		if(clienteRepository.findById(id).isPresent()) {
 			clienteRepository.deleteById(id);
 			return ResponseEntity.ok().body("Registro De Cliente Eliminado Correctamente");
