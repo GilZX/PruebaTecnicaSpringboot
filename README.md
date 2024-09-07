@@ -17,6 +17,12 @@ de cualquier proyecto.
   ## Documentación de API
 
   Estructura General de los CLientes en JSON
+
+  
+  ## Documentación Adicional
+
+Para más detalles sobre las tecnologías utilizadas en este proyecto, consulta el siguiente documento: [Tecnologías Utilizadas](docs/tecnologias-utilizadas.pdf).
+
    {
         "id_cliente": 8,
         "nombre_cliente": "Daniela",
