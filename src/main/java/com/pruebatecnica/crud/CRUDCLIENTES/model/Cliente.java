@@ -1,9 +1,21 @@
 package com.pruebatecnica.crud.CRUDCLIENTES.model;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonEncoding;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="clientes")
@@ -13,23 +25,33 @@ public class Cliente {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id_cliente;
 
+@NotBlank(message="Es requerido el valor del nombre")
 private String nombre_cliente;
 
+@NotBlank(message="Es requerido el valor de apellido")
 private String apellido_cliente;
+
 
 private String correo_electronico;
 
+@Min(value=1,message="Verifique el valor minimo de la edad")
+@Max(value=105,message="Verigfique el valor maximo de la edad")
 private int edad;
 
+@NotBlank(message="Es requerido el genero")
+@Pattern(regexp = "M|F",message="Valores Requeridos M masculino o F para Femenino")
 private String genero;
 
 private String direccion;
 
+@JsonProperty(access=JsonProperty.Access.READ_ONLY)
+@CreationTimestamp
+@Column(updatable = false)
 private Date fecha_registro;
 
-private LocalDateTime ultima_modificacion;
-
-
+@JsonProperty(access=JsonProperty.Access.READ_ONLY)
+@UpdateTimestamp
+private OffsetDateTime  ultima_modificacion;
 
 
 public Cliente() {
@@ -40,7 +62,7 @@ public Cliente() {
 
 
 public Cliente(String nombre_cliente, String apellido_cliente, String correo_electronico, int edad,
-		String genero, String direccion, Date fecha_registro, LocalDateTime ultima_modificacion) {
+		String genero, String direccion, Date fecha_registro, OffsetDateTime ultima_modificacion) {
 	this.nombre_cliente = nombre_cliente;
 	this.apellido_cliente = apellido_cliente;
 	this.correo_electronico = correo_electronico;
@@ -123,11 +145,11 @@ public void setFecha_registro(Date fecha_registro) {
 	this.fecha_registro = fecha_registro;
 }
 
-public LocalDateTime getUltima_modificacion() {
+public OffsetDateTime getUltima_modificacion() {
 	return ultima_modificacion;
 }
 
-public void setUltima_modificacion(LocalDateTime ultima_modificacion) {
+public void setUltima_modificacion(OffsetDateTime ultima_modificacion) {
 	this.ultima_modificacion = ultima_modificacion;
 }
 
