@@ -21,7 +21,7 @@ de cualquier proyecto.
   
   ## Documentación Adicional
 
-Para más detalles sobre las tecnologías utilizadas en este proyecto, consulta el siguiente documento: [Tecnologías Utilizadas](docs/tecnologias-utilizadas.pdf).
+Para más detalles sobre las tecnologías utilizadas en este proyecto, consulta el siguiente documento: [Tecnologías Utilizadas](docs/PruebaTecnica.pdf).
 
    {
         "id_cliente": 8,
